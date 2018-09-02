@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'Druk-WideMedium';
+    src: url('../static/media/Druk-WideMedium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'AkzidenzGrotConBQ-Medium';
+    src: url('../static/media/AkzidenzGrotConBQ-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
