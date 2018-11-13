@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { color } from './theme/Colors'
 import './fonts.css'
 
 export const HFont = styled.span`
@@ -68,6 +67,9 @@ export const H4 = styled.h4`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     
+    @media (max-width: 500px) {
+        font-size: 16px;
+    }
     font-size: 18px;
     text-shadow: none;
     border-bottom: none;
@@ -77,6 +79,9 @@ export const P = styled.p`
     font-family: 'text-font', sans-serif;
     color: ${props => props.theme.contrastColor};
     font-size: 18px;
+    @media (max-width: 500px) {
+        font-size: 16px;
+    }
     margin-bottom: 10px;
     text-rendering: optimise-legibility;
     -webkit-font-smoothing: antialiased;

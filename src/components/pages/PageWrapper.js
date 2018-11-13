@@ -9,15 +9,11 @@ const ContentWrapper = styled.div`
     padding-left: 10vw;
     
     @media (max-width: 500px) {
-        // padding: 50px;
-        padding-right: 50px;
-        padding-left: 50px;
+        padding-right: 5vw;
+        padding-left: 5vw;
     }
 
     @media (min-width: 1000px) {
-        // width: 900px;
-        // padding-right: 5vw;
-        // padding-left: 5vw;
         margin: auto;
     }
 `;

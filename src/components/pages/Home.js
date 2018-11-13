@@ -15,18 +15,6 @@ const IntroP = styled(P)`
     }
 `;
 
-const TitleWrapper = styled.div`
-    height:auto;
-    display: inline-block;
-    position: fixed;
-    pointer-events: auto;
-    top:0;
-    z-index:1;
-    bottom: 5vh;
-    transition-duration: 1s;
-    transform: translateY(calc(95vh - 100px));
-`;
-
 const Title = styled(H1)`
     font-family: 'title-font', sans-serif;
     text-rendering: optimise-legibility;
@@ -41,6 +29,7 @@ const Title = styled(H1)`
    
     @media (max-width: 500px) {
         font-size: 7vw;
+        padding-top: 10vh;
     }
     
     color: ${props => props.theme.contrastColor};
@@ -56,8 +45,13 @@ const Title = styled(H1)`
 `;
 
 const ContentWrapper = styled.div`
-height:70vh;
-width:100%`;
+height:75vh;
+width:100%
+
+@media (max-width: 500px) {
+    height:70vh;
+}
+`;
 
 export default class Home extends React.Component {
 
@@ -69,9 +63,7 @@ export default class Home extends React.Component {
                     <IntroP>HI MY NAME IS</IntroP>
                     <RotatingMenu menuItems={items}/>
                 </ContentWrapper>
-                <TitleWrapper>
-                    <Title>{`LOUIS\nOLSEN-STAHL`}</Title>
-                </TitleWrapper>
+                <Title>{`LOUIS\nOLSEN-STAHL`}</Title>
             </PageWrapper>
         );
     }

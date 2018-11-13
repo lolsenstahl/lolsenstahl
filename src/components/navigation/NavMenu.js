@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { CSSTransitionGroup } from 'react-transition-group'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import alpha from "color-alpha";
 import RotatingMenu from "../menus/RotatingMenu";
@@ -30,10 +29,10 @@ const MenuButtonWrapper = styled.div`
     z-index:1;
     top: 5vh;
     right: 2vw;
-    padding-right: 2vw;
+    margin-right: 2vw;
     visibility: visible;
-    width: 34px;
-    height: 26px;
+    width: 32px;
+    height: 32px;
     
     @media (max-width: 500px) {
         right: 0.5vw;
@@ -43,13 +42,15 @@ const MenuButtonWrapper = styled.div`
 
 
 const NavigationButton = styled.button`
+    position: relative;
     opacity: 1;
     z-index:10;
     width: 100%;
     height: 100%;
     display: block;
     padding: 0;
-    margin: 0;
+    margin:auto;
+    // margin: 0;
     background-color: inherit;
     border: none;
     cursor: pointer;
@@ -61,7 +62,7 @@ const NavigationButton = styled.button`
 
 const LineTop = styled.div`
     position: absolute;
-    top:0;
+    top:5px;
     width: 32px;
     height: 2px;
     background-color:  ${props => props.theme.contrastColor}
@@ -82,11 +83,11 @@ const LineBot = styled(LineTop)`
 const MenuWrapper = styled.div`
 display: inline-block;
 width: auto;
-height:auto;
+height:80vh;
 right:0;
 `;
 
-export default class NavigationMenu extends React.Component {
+export default class NavigationMenu extends Component {
 
     state = { menuOpen: false };
 

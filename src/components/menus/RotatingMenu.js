@@ -26,7 +26,7 @@ const RotatedContainer = styled.div`
     }
     
     @media (max-width: 600px) {
-        transform: rotate3d(0, 1, 0, -5deg) translateZ(0) scale(1);
+        transform: rotate3d(0, 1, 0, 0deg) translateZ(0) scale(1);
     }
 
 `;
@@ -99,6 +99,10 @@ const MenuLink = styled(Link)`
         transform: rotate3d(0, 1, 0, 15deg) translateZ(0) scale(1);
         @supports ((-webkit-text-stroke: 3px #000) or (text-stroke: 3px #000)) {
             color: transparent;
+        }
+        
+        @media (max-width: 600px) {
+            transform: rotate3d(0, 1, 0, 0deg) translateZ(0) scale(1);
         }
     }
 `;
