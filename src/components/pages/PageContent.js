@@ -11,7 +11,7 @@ import Home from './Home'
 import Career from './Career'
 import About from './About'
 import Contact from './Contact'
-import NavigationMenu from "../nav/NavMenu";
+import NavigationMenu from "../navigation/NavMenu";
 import '../fonts.css'
 import PageNotFound from "./PageNotFound";
 

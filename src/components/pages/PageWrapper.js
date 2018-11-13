@@ -1,10 +1,5 @@
 import React, { Fragment } from 'react'
 import styled from 'styled-components'
-import { color } from '../theme/Colors'
-import * as Text from '../Text'
-import NavigationMenu from "../nav/NavMenu";
-import {CSSTransition, TransitionGroup} from "react-transition-group";
-import ScrollToTop from "../ScrollToTop";
 const ContentWrapper = styled.div`
     min-height: 100vh;
     padding: 20px;
