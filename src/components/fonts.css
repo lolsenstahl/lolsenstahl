@@ -1,14 +1,15 @@
 @font-face {
-    font-family: 'Druk-WideMedium';
-    src: url('../static/media/Druk-WideMedium.ttf') format('truetype');
+    font-family: 'title-font';
+    font-display: auto;
+    src: url('../static/media/titles.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
-
 @font-face {
-    font-family: 'AkzidenzGrotConBQ-Medium';
-    src: url('../static/media/AkzidenzGrotConBQ-Medium.ttf') format('truetype');
-    font-weight: normal;
+    font-family: 'text-font';
+    font-display: auto;
+    src: url('../static/media/text-regular.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
 }

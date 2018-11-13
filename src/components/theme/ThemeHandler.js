@@ -1,14 +1,14 @@
-import React from "react";
+import React, {Component} from "react";
 import {color} from './Colors'
 import styled, {ThemeProvider} from "styled-components";
-import ThemeSelector from "./ThemeSelector";
+import RadialMenu from "../menus/RadialMenu";
 
 // Theme Definitions
 const LightTheme =
 {
     colorScheme: "light",
     primaryColor: color.offWhite,
-    contrastColor: color.offBlack,
+    contrastColor: color.dark,
     overlayColor: color.offWhite,
     accentColor: color.brightRed
 };
@@ -17,16 +17,16 @@ const DarkTheme =
 {
     colorScheme: "dark",
     primaryColor: color.dark,
-    contrastColor: color.offWhite,
+    contrastColor: color.brightRed,
     overlayColor: color.dark,
-    accentColor: color.darkContrast
+    accentColor: color.offWhite
 };
 
 const RedTheme =
 {
     colorScheme: "red",
     primaryColor: color.brightRed,
-    contrastColor: color.offWhite,
+    contrastColor: color.dullWhite,
     overlayColor: color.brightRed,
     accentColor: color.dark
 };
@@ -40,6 +40,11 @@ const ThemeMenuWrapper = styled.div`
     width:45px;
     padding-right: 1vw;
     padding-bottom: 2vh;
+    
+    @media (max-width: 500px) {
+        right: 0.5vw;
+        transform: scale(0.75);
+    }
 `;
 
 const Wrapper = styled.div`
@@ -48,61 +53,66 @@ const Wrapper = styled.div`
     height:100%;
 `;
 
-class ThemeHandler extends React.Component {
+class ThemeHandler extends Component {
 
     constructor(props)
     {
         super(props);
-        this.onLight = this.onLight.bind(this);
-        this.onDark = this.onDark.bind(this);
-        this.onRedTheme = this.onRedTheme.bind(this);
-    }
+        this.onThemeSelection = this.onThemeSelection.bind(this);
+        this.onThemeEnter = this.onThemeEnter.bind(this);
+        this.onThemeExit = this.onThemeExit.bind(this);
 
-    // State definition
-    state = {
-        theme: LightTheme
-    };
+        const colorThemes = [
+            { color: LightTheme.primaryColor, contrast: LightTheme.contrastColor, theme: LightTheme},
+            { color: DarkTheme.primaryColor, contrast: DarkTheme.contrastColor,theme: DarkTheme},
+            { color: RedTheme.primaryColor, contrast: RedTheme.contrastColor,theme: RedTheme}
+        ];
+
+        this.state = {
+            currentTheme: LightTheme,
+            selectedTheme: LightTheme,
+            themeSelectColor: LightTheme.contrastColor,
+            themes: colorThemes,
+        };
+    }
 
     componentDidMount() {
-        this.setState({
-            theme: LightTheme
-        })
+        // this.setState({
+        //     currentTheme: LightTheme
+        // })
     }
 
-    onLight()
+    onThemeSelection(index)
     {
-        this.setState({theme: LightTheme}
-        )
+        const updateTheme = this.state.themes[index].theme;
+        this.setState({currentTheme: updateTheme, selectedTheme: updateTheme,themeSelectColor: updateTheme.contrastColor });
     }
 
-    onDark()
+    // Preview the hovered theme
+    onThemeEnter(index)
     {
-        this.setState({theme: DarkTheme}
-        )
+        this.setState({themeSelectColor: this.state.themes[index].theme.primaryColor });
     }
 
-    onRedTheme()
+    // Restore the selected theme
+    onThemeExit(index)
     {
-        this.setState({theme: RedTheme})
+        this.setState({themeSelectColor: this.state.selectedTheme.contrastColor});
     }
 
     render() {
 
-        const radialThemes = [
-            { color: DarkTheme.primaryColor, clickHandler: () => this.onDark()     },
-            { color: DarkTheme.primaryColor, clickHandler: () => this.onDark()     },
-            { color: LightTheme.primaryColor, clickHandler: () => this.onLight()  },
-            { color: LightTheme.primaryColor, clickHandler: () => this.onLight()  },
-            { color: RedTheme.primaryColor, clickHandler: () => this.onRedTheme() },
-            { color: RedTheme.primaryColor, clickHandler: () => this.onRedTheme() }
-        ];
-
         return (
-            <ThemeProvider theme={this.state.theme}>
+            <ThemeProvider theme={this.state.currentTheme}>
                 <Wrapper>
                     {this.props.children}
                     <ThemeMenuWrapper>
-                        <ThemeSelector segments={radialThemes}/>
+                        <RadialMenu segmentColors={this.state.themes}
+                                    onSegmentClick={(index) => this.onThemeSelection(index)}
+                                    onSegmentEnter={(index) => this.onThemeEnter(index)}
+                                    onSegmentExit={(index) => this.onThemeExit(index)}
+                                    dotColor={this.state.themeSelectColor}
+                        />
                     </ThemeMenuWrapper>
                 </Wrapper>
             </ThemeProvider>

@@ -13,12 +13,9 @@ const DisplayContainer = styled.div`
     left:0;
     margin:0;   
     padding: 0;
-    
     height: 100vh;
-    width: 100vw;
     background-color: ${props => alpha(props.theme.overlayColor, .9)};
     visibility: ${props => props.open ? 'visible' : 'hidden'};
-
 `;
 
 const ContentWrapper = styled.div`
@@ -29,16 +26,19 @@ padding-top: 10vh;
 
 // Hamburger Toggle Button
 const MenuButtonWrapper = styled.div`
-    
     position: fixed;
     z-index:1;
     top: 5vh;
     right: 2vw;
     padding-right: 2vw;
     visibility: visible;
-    // display: inline-block;
     width: 34px;
     height: 26px;
+    
+    @media (max-width: 500px) {
+        right: 0.5vw;
+        transform: scale(0.75);
+    }
 `;
 
 
@@ -50,7 +50,6 @@ const NavigationButton = styled.button`
     display: block;
     padding: 0;
     margin: 0;
-
     background-color: inherit;
     border: none;
     cursor: pointer;
@@ -64,7 +63,7 @@ const LineTop = styled.div`
     position: absolute;
     top:0;
     width: 32px;
-    height: 4px;
+    height: 2px;
     background-color:  ${props => props.theme.contrastColor}
     transition: all 0.3s, translate 0s;
     transform-origin: 50% 50%;
@@ -92,7 +91,6 @@ export default class NavigationMenu extends React.Component {
     state = { menuOpen: false };
 
     toggleMenuOpen = () => {
-        console.log("Toggle menuu");
         this.setState(prevState => ({
             menuOpen: !(prevState.menuOpen)
         }));

@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 import { color } from './theme/Colors'
-
 import './fonts.css'
 
 export const HFont = styled.span`
-    font-family: 'Druk-WideMedium', sans-serif;
+    font-family: 'title-font', sans-serif;
     text-rendering: optimise-legibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -12,25 +11,21 @@ export const HFont = styled.span`
 `;
 
 export const PFont = styled.span`
-    font-family: 'AkzidenzGrotConBQ-Medium', sans-serif;
+    font-family: 'text-font', sans-serif;
 `;
 
 export const H1 = styled.h1`
-    font-family: 'Druk-WideMedium', sans-serif;
+    font-family: 'title-font', sans-serif;
     color: ${props => props.theme.contrastColor};
     font-size: 48px;
     margin: 0;
-    
     text-rendering: optimise-legibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    
-
-}
 `;
 
 export const Underline = styled.span`
-    border-bottom: 1px solid ${props => props.theme.accentColor};
+    border-bottom: 4px solid ${props => props.theme.accentColor};
     display:inline;
     &:after,
     &:before {
@@ -58,21 +53,17 @@ export const H4 = H1.withComponent('h4').extend`
 `;
 
 export const P = styled.p`
-    font-family: 'AkzidenzGrotConBQ-Medium', sans-serif;
+    font-family: 'text-font', sans-serif;
     color: ${props => props.theme.contrastColor};
     font-size: 18px;
-    margin: 0;
+    margin-bottom: 10px;
     text-rendering: optimise-legibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 `;
 
-
-export const PH = P.extend`
+export const ParagraphHeading = P.extend`
     font-size: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+    font-weight: bold;
 `;
-
-// export const Date = P.extend`
-//     color:  ${props => props.theme.contrastColor};
-// `;
