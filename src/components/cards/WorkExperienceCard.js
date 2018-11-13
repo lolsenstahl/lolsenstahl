@@ -14,10 +14,10 @@ const Point = styled.li`
     color: ${props => props.theme.accentColor};
 `;
 
-const CardExperience = ({ title, date, description }) => (
+const WorkExperienceCard = ({ title, date, description }) => (
     <CardBase hasList title={title} subTitle={date}>
         <List>{description.map((point, i) => <Point key={i} ><Text.P>{point}</Text.P></Point> )}</List>
     </CardBase>
 );
 
-export default CardExperience
+export default WorkExperienceCard

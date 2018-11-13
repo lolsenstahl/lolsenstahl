@@ -1,15 +1,21 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import {ParagraphHeading} from "../Text";
 import CardBase from "./CardBase";
+import * as Text from "../Text";
 
-const CardText = ({heading, single, children}) => (
+const TextLines = ({ text }) => (
+    <Fragment>
+        {text.map(( line,key) => { return <Text.P key={key}> {line} </Text.P>; } )}
+    </Fragment>
+);
+
+const TextCard = ({heading, single, text}) => (
     <CardBase noBanner={true}
               hasList={false}
-              noBorder={true}
               single={single}>
         {heading && <ParagraphHeading>{heading}</ParagraphHeading>}
-        {children}
+        <TextLines text={text}/>
     </CardBase>
 );
 
-export default CardText;
+export default TextCard;
