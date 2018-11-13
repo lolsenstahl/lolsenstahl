@@ -1,43 +1,64 @@
 import React, {Component} from 'react'
-import { BrowserRouter, HashRouter } from 'react-router-dom'
-import styled, { injectGlobal } from 'styled-components'
+import { BrowserRouter } from 'react-router-dom'
+import styled, { createGlobalStyle } from 'styled-components'
 import ScrollToTop from './components/ScrollToTop'
 import info from './static/data/info.json'
 import PageContent from './components/pages/PageContent'
-import { color } from './components/theme/Colors'
 import ThemeHandler from "./components/theme/ThemeHandler";
 import './components/fonts.css'
 
-// Inject styles directly. Cannot apply styled component to body so inject directly
-injectGlobal`
-    body {
-        // height: 100vh;
-        // width: 100vw;
-        margin: 0;
-        padding: 0;
-        font-family: sans-serif;
-        position: relative;
-        z-index: -1;
-        // overflow: hidden;
-        overflow-y: scroll;
-        
-        // background-color:  ${props => props.theme.primaryColor};
-        /* Color most closely matches the color where the clipping on iOS occurs */
-        // background: ${color.backgroundFallback}; /* Fallback for old browsers */
-
-        // &:after{
-        //     content: "";
-        //     position: fixed; /* Stretch a fixed position to the whole screen */
-        //     top: 0;
-        //     height: 100vh; /* Fix for mobile browser address bar appearing disappearing */
-        //     left: 0;
-        //     right: 0;
-        //     z-index: -1; /* Needed to keep in the background */
-        //     background: ${color.background};
-        //     background-size: 100% 100%;
-        // }
+const GlobalStyle = createGlobalStyle`
+body {
+    background-color:  ${props => props.theme.primaryColor};
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    position: relative;
+    // z-index: -1;
+    // overflow: hidden;
+    overflow-y: scroll;
+    
+    &:after{
+        content: "";
+        position: fixed; /* Stretch a fixed position to the whole screen */
+        top: 0;
+        height: 100vh; /* Fix for mobile browser address bar appearing disappearing */
+        left: 0;
+        right: 0;
+        z-index: -1; /* Needed to keep in the background */
+        background-color: ${props => props.theme.primaryColor};
+        background-size: 100% 100%;
     }
-`;
+}
+  `;
+// Inject styles directly. Cannot apply styled component to body so inject directly
+// injectGlobal`
+//     body {
+//         margin: 0;
+//         padding: 0;
+//         font-family: sans-serif;
+//         position: relative;
+//         // z-index: -1;
+//         // overflow: hidden;
+//         overflow-y: scroll;
+//
+//         // background-color:  ${props => props.theme.primaryColor};
+//         /* Color most closely matches the color where the clipping on iOS occurs */
+//         // background: ${color.backgroundFallback}; /* Fallback for old browsers */
+//
+//         &:after{
+//             content: "";
+//             position: fixed; /* Stretch a fixed position to the whole screen */
+//             top: 0;
+//             height: 100vh; /* Fix for mobile browser address bar appearing disappearing */
+//             left: 0;
+//             right: 0;
+//             z-index: -1; /* Needed to keep in the background */
+//             background-color: black;//${props => props.theme.primaryColor};
+//             background-size: 100% 100%;
+//         }
+//     }
+// `;
 
 const ContentWrapper = styled.div`
     position: absolute;
@@ -81,6 +102,7 @@ class App extends Component {
         <BrowserRouter basename={baseName}>
             <ScrollToTop>
                 <ThemeHandler>
+                    <GlobalStyle/>
                     {/*<ContentWrapper>*/}
                         {this.state.data && <PageContent data={this.state.data} />}
                     {/*</ContentWrapper>*/}

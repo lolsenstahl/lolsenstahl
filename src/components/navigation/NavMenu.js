@@ -70,12 +70,12 @@ const LineTop = styled.div`
     transform: ${props => props.open ? 'translate(0px, 10px) rotate(45deg) ': 'translate(0px, 0px)'};
 `;
 
-const LineMid = LineTop.extend`
+const LineMid = styled(LineTop)`
     transform: translate(0px, 10px);
     opacity: ${props => props.open ? '0' : '1'};
 `;
 
-const LineBot = LineTop.extend`
+const LineBot = styled(LineTop)`
     transform: ${props => props.open ? 'translate(0px, 10px) rotate(-45deg) ' : 'translate(0px, 20px)'};
 `;
 

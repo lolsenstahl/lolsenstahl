@@ -46,7 +46,7 @@ const Link = styled.a`
     text-decoration: none;
 `;
 
-const Title = H1.extend`
+const Title = styled(H1)`
 text-align: center;
 padding-bottom: 20px;
 `;

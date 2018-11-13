@@ -35,18 +35,39 @@ export const Underline = styled.span`
     }
 `;
 
-export const H2 = H1.withComponent('h2').extend`
+export const H2 = styled.h2`
+    font-family: 'title-font', sans-serif;
+    color: ${props => props.theme.contrastColor};
+    margin: 0;
+    text-rendering: optimise-legibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
     font-size: 32px;
     margin-bottom: 25px;
 `;
 
-export const H3 = H1.withComponent('h3').extend`
+export const H3 = styled.h3`
+    font-family: 'title-font', sans-serif;
+    color: ${props => props.theme.contrastColor};
+    margin: 0;
+    text-rendering: optimise-legibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
     font-size: 22px;
     margin-bottom: 25px;
     border-bottom: none;
 `;
 
-export const H4 = H1.withComponent('h4').extend`
+export const H4 = styled.h4`
+    font-family: 'title-font', sans-serif;
+    color: ${props => props.theme.contrastColor};
+    margin: 0;
+    text-rendering: optimise-legibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
     font-size: 18px;
     text-shadow: none;
     border-bottom: none;
@@ -62,7 +83,7 @@ export const P = styled.p`
     -moz-osx-font-smoothing: grayscale;
 `;
 
-export const ParagraphHeading = P.extend`
+export const ParagraphHeading = styled(P)`
     font-size: 20px;
     margin-bottom: 15px;
     font-weight: bold;

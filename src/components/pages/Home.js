@@ -5,7 +5,7 @@ import { H1, P } from '../Text'
 import RotatingMenu from "../menus/RotatingMenu";
 import PageWrapper from "./PageWrapper";
 
-const IntroP = P.extend`
+const IntroP = styled(P)`
     @media (min-width: 375px) {
         font-size: 20px;
     }
@@ -27,7 +27,13 @@ const TitleWrapper = styled.div`
     transform: translateY(calc(95vh - 100px));
 `;
 
-const Title = H1.withComponent('HFont').extend`
+const Title = styled(H1)`
+    font-family: 'title-font', sans-serif;
+    text-rendering: optimise-legibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 2px;
+    
     font-size: 40px;
     font-weight: normal;
     line-height: 0.85em;
