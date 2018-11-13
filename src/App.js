@@ -76,8 +76,9 @@ class App extends Component {
     }
 // {this.state.data && <PageContent data={this.state.data} />}
   render() {
+        const baseName = process.env.PUBLIC_URL;
     return (
-        <BrowserRouter basename="/">
+        <BrowserRouter basename={baseName}>
             <ScrollToTop>
                 <ThemeHandler>
                     {/*<ContentWrapper>*/}
