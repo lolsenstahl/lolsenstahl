@@ -1,36 +1,28 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import styled from 'styled-components'
-import PageWrapper from './PageWrapper'
 import * as Text from '../Text'
-import LouisImg from '../../static/media/pic.jpg';
-
+import PageWrapper from './PageWrapper'
 import IconCard from '../cards/IconCard'
-
-import Paris from '../../static/media/paris.jpg';
-import Berlin from '../../static/media/berlin.jpg';
-import London from '../../static/media/london.jpg';
-import Fuji from '../../static/media/fuji_shrine.jpg';
-import GarageProject from '../../static/media/gp.png'
-import Chinoiserie from '../../static/media/chinoiserie.jpg';
-
-import Toni from '../../static/media/toni_erdmann.jpg'
-import KillBill from '../../static/media/kill_bill.jpg'
-
-import PK from '../../static/media/kalkbrenner.jpg'
-import Kills from '../../static/media/kills.jpg'
-import Andhim from '../../static/media/andhim.png'
-import FFD from '../../static/media/ffd.jpg'
-
-import UoA from '../../static/media/uoa.png'
+import TextCard from '../cards/TextCard'
+import '../fonts.css'
+// Image Imports
+import LouisImg from '../../static/media/pic.jpg';
+import CardBase from "../cards/CardBase";
 
 const Hero = styled.img`
     height: 220px;
     width: 220px;
     margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
     display: block;
     transition: all .25s ease-in-out;
     border-radius:50%;
 
+    @media (max-width: 400px) {
+        height: 175px;
+        width: 175px;
+    }
     &:hover {
         opacity: 0.7;
      }
@@ -42,53 +34,84 @@ const CardWrapper = styled.div`
     flex-wrap: wrap;
 `;
 
+const EducationItemContainer = styled.div`
+    padding-top: 20px;
+`;
+
+const List = styled.ul`
+    margin: 0;
+    padding-left: 20px;
+`;
+
+const Point = styled.li`
+    list-style-type: square;
+    color: ${props => props.theme.accentColor};
+`;
+
+const EducationItem = ({title, date, description }) => (
+    <EducationItemContainer>
+        {title && <Text.ParagraphHeading>{title}</Text.ParagraphHeading>}
+        <List>
+            {description.map((point, i) =>
+                <Point key={i} ><Text.P>{point}</Text.P>
+                </Point> )}
+        </List>
+    </EducationItemContainer>
+);
+
+const EducationCard = ({ title, date, educationItems }) => (
+    <CardBase hasList title={title} subTitle={date}
+    >
+        {educationItems.map((point, i) =>
+            <EducationItem key={i} title={point.title} date={point.date} description={point.description}/>
+            )}
+    </CardBase>
+);
+
+const Interest =({title, description, subsections }) => (
+    <Fragment>
+        {title && <Text.H3>{'> ' + title}</Text.H3>}
+        <CardWrapper>
+            {description && <TextCard text={description}/>}
+            {subsections && subsections.map(({title, icon, text}) =>
+                <IconCard key={title} icon={icon} heading={title} description={text} />)}
+        </CardWrapper>
+    </Fragment>
+
+);
+
+const ProfileSection = ({title, description }) => (
+    <Fragment>
+        {title && <Text.H3>{title}</Text.H3>}
+        <CardWrapper>
+            {description && <TextCard text={description}/>}
+        </CardWrapper>
+    </Fragment>
+
+);
+
 export default class About extends React.Component
 {
     render()
     {
-        console.log("Render About");
+        const Interests = this.props.interests.map( ({title, description, subsections}) =>
+            <Interest key={title} title={title} description={description} subsections={subsections}/>);
+
+        const ProfileSections = this.props.profile.map( ({title, description}) =>
+            <ProfileSection key={title} title={title} description={description}/>);
+
+        const Education = this.props.education.map( ({title, date, education}) =>
+            <EducationCard key={title} title={title} date={date} educationItems={education}/>);
+
         return(
             <PageWrapper title='About'>
                 <Hero src={LouisImg} />
-                <Text.H2>Profile</Text.H2>
-                <Text.P>Hey this is me</Text.P>
-
-                <Text.H3>Education</Text.H3>
-                <IconCard icon={UoA}
-                          single
-                          heading={'The University of Auckland'}
-                          text={'Bachelor of Engineering in Electrical and Electronic Engineering with First Class Honours'}/>
-                <Text.H2>Interests</Text.H2>
-                <Text.H3>Travel</Text.H3>
-                <Text.P>I've always had an interest in exploring new cultures, environments and enjoy the feeling
-                    of discovering new  and different places around the world.
-                </Text.P>
-                <CardWrapper>
-                    <IconCard icon={Fuji} heading={'Japan'} text={''}/>
-                    <IconCard icon={Paris} heading={'France'} text={''}/>
-                    <IconCard icon={Berlin} heading={'Germany'} text={''}/>
-                    <IconCard icon={London} heading={'UK'} text={''}/>
-                </CardWrapper>
-                
-                <Text.H3>Technology</Text.H3>
-                <Text.H3>Film</Text.H3>
-                <CardWrapper>
-                    <IconCard icon={Toni} heading={'Toni Erdmann'} text={''}/>
-                    <IconCard icon={KillBill} heading={'Kill Bill'} text={''}/>
-                </CardWrapper>
-                <Text.H3>Music</Text.H3>
-                <CardWrapper>
-                    <IconCard icon={PK} heading={'Paul Kalkbrenner'} text={'Feed your head, Let me hear you scream, Sky and Sand'}/>
-                    <IconCard icon={Kills} heading={'The Kills'} text={'Tape Song, Last Day of Magic, Love is a Deserter, Rodeo Town'}/>
-                    <IconCard icon={Andhim} heading={'Andhim'} text={'Hausch, Boy Boy Boy'}/>
-                    <IconCard icon={FFD} heading={'Fat Freddy\'s Drop'} text={'Blackbird, Wandering Eye'}/>
-                </CardWrapper>
-
-                <Text.H3>Good Food</Text.H3>
-                <CardWrapper>
-                    <IconCard icon={GarageProject} heading={'Garage Project'} text={'Fantastic craft brewery based in Wellington, NZ'}/>
-                    <IconCard icon={Chinoiserie} heading={'Chinoiserie'} text={'Great fusion eatery in Auckland, NZ'}/>
-                </CardWrapper>
+                <Text.H2><Text.Underline>Profile</Text.Underline></Text.H2>
+                {ProfileSections}
+                <Text.H2><Text.Underline>Education</Text.Underline></Text.H2>
+                {Education}
+                <Text.H2><Text.Underline>Interests</Text.Underline></Text.H2>
+                {Interests}
             </PageWrapper>
         );
     }
