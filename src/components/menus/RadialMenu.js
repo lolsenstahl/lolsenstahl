@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import PieChart from 'react-minimal-pie-chart';
 
 const CircleContainer = styled.div`
-    // z-index:10;
     transform: rotate(-180deg) scale(0);
     transition: opacity 0.5s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
     position: absolute;
@@ -11,7 +10,6 @@ const CircleContainer = styled.div`
     left:0;
     width: 100%;
     height: 100%;
-
     overflow: hidden;
     border-radius: 50%;
     pointer-events: auto;
@@ -24,13 +22,9 @@ pointer-events: none;
     height: 90%;
     top:5%;
     left:5%;
-
     border-radius: 50%;
-
-
     z-index:10;
     padding: 0;
-
     background-color:  ${props => props.theme.primaryColor};
 `;
 
@@ -42,11 +36,9 @@ const InnerDot = styled.div`
     top:45%;
     left:45%;
     border-radius: 50%;
-
     z-index:10;
     padding: 0;
-
-    background-color: ${props => props.theme.contrastColor};
+    background-color: ${props => props.dotColor};
 `;
 
 const SelectorContainer = styled.div`
@@ -57,27 +49,26 @@ const SelectorContainer = styled.div`
     width: 100%; 
     height: 100%;
 
-    
     &:hover ${CircleContainer}
     {
         transform: rotate(15deg) scale(1);
     }
 `;
 
-class ThemeSelector extends Component {
-    segments;
-
+class RadialMenu extends Component {
+    segmentColors;
+    dotColor;
     constructor(props)
     {
         super(props);
 
         // Create segment data
-        const data = this.props.segments.map((segment, i) =>
+        const data = this.props.segmentColors.map((segment, i) =>
                     (
                         {
                             key: i,
                             value: 1,
-                            color: segment.color,
+                            color: segment.color
                         }
                     ));
 
@@ -109,7 +100,6 @@ class ThemeSelector extends Component {
 
     render()
     {
-
         return (
             <SelectorContainer>
                 <CircleContainer>
@@ -117,18 +107,18 @@ class ThemeSelector extends Component {
                         data={this.state.data}
                         segmentsStyle={{ transition: 'stroke .3s' }}
                         onClick={this.onSegmentClick}
-                        startAngle={270}
+                        startAngle={150}
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
                         animate
                     />
                      <InnerMask/>
                 </CircleContainer>
-                <InnerDot/>
+                <InnerDot dotColor={this.props.dotColor}/>
             </SelectorContainer>
         );
     }
 }
 
 
-export default ThemeSelector
+export default RadialMenu

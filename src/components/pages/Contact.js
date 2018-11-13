@@ -2,7 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import PageWrapper from './PageWrapper'
 import CardBase from '../cards/CardBase'
+import '../fonts.css'
 import { color } from '../theme/Colors'
+
 // Explicit import as limited number of icons used.
 // Allows icons to be subsetted, optimizing final bundle. Only icons imported are included in the bundle
 
@@ -14,8 +16,7 @@ import {
     faFacebook,
     faSpotify
 } from '@fortawesome/free-brands-svg-icons'
-import {H1} from "../Text";
-
+import {H1, Underline} from "../Text";
 
 const Wrapper = styled.div`
     @media (min-width: 900px) {
@@ -36,7 +37,7 @@ const Icon = styled(FontAwesomeIcon)`
 `;
 
 const Link = styled.a`
-    font-family: 'Poppins', sans-serif;
+    font-family: 'text-font', sans-serif;
     color: ${props => props.theme.contrastColor};
     padding-left: 15px;
     margin: 0;
@@ -54,8 +55,6 @@ export default class Contact extends React.Component
 {
     render()
     {
-        console.log("Render contact");
-
         const email = this.props.email;
         const mobile = this.props.mobile;
         const linkedIn = this.props.linkedIn;
@@ -65,15 +64,15 @@ export default class Contact extends React.Component
 
         return(
             <PageWrapper title='Contact'>
-                <Title>Get In Touch</Title>
+                <Title><Underline>Get in Touch</Underline></Title>
                 <Wrapper>
-                    <CardBase title='Email' twoPerRow bannerColor={'#ea4335'}>
+                    <CardBase title='Email' twoPerRow >
                         <Content>
                             <Icon icon={faEnvelopeSquare}/>
                             <Link href={"mailto:" + email + "?subject=Enquiries"}>{email}</Link>
                         </Content>
                     </CardBase>
-                    <CardBase title='LinkedIn' twoPerRow bannerColor={'#0077b5'}>
+                    <CardBase title='LinkedIn' twoPerRow >
                         <Content>
                             <Icon icon={faLinkedin}/>
                             <Link target="_blank" rel="noopener noreferrer" href={linkedIn}>louis-olsen-stahl</Link>
@@ -88,16 +87,16 @@ export default class Contact extends React.Component
                     <CardBase title='Github' twoPerRow>
                         <Content>
                             <Icon icon={faGithubSquare}/>
-                            <Link target="_blank" rel="noopener noreferrer" href={github}>Lols017</Link>
+                            <Link target="_blank" rel="noopener noreferrer" href={github}>lolsenstahl</Link>
                         </Content>
                     </CardBase>
-                    <CardBase title='Facebook' twoPerRow bannerColor={'#3b5998'}>
+                    <CardBase title='Facebook' twoPerRow >
                         <Content>
                             <Icon icon={faFacebook}/>
                             <Link target="_blank" rel="noopener noreferrer" href={facebook}>Facebook</Link>
                         </Content>
                     </CardBase>
-                    <CardBase title='Spotify' twoPerRow bannerColor={'#1db954'}>
+                    <CardBase title='Spotify' twoPerRow>
                         <Content>
                             <Icon icon={faSpotify}/>
                             <Link target="_blank" rel="noopener noreferrer" href={spotify}>Spotify</Link>

@@ -3,42 +3,13 @@ import styled from 'styled-components'
 import { color } from '../theme/Colors'
 import * as Text from '../Text'
 import NavigationMenu from "../nav/NavMenu";
-
-const TitleOuter = styled.div`
-    width: 100vw;
-    height: 60vw;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0,0,0,0.15);
-    box-shadow: 0 5px 30px 10px rgba(0,0,0,0.15);
-
-    @media (min-width: 600px) {
-        height: 260px;
-    }
-
-    @media (min-width: 900px) {
-        height: 220px;
-    }
-`;
-
-const TitleInner = styled.div`
-    padding: 0 20px;
-    box-sizing: border-box;
-    border-top: 1px solid ${color.white};
-    border-bottom: 1px solid ${color.white};
-`;
-
-export const PageTitle = styled.div`
-    
-`;
-
+import {CSSTransition, TransitionGroup} from "react-transition-group";
+import ScrollToTop from "../ScrollToTop";
 const ContentWrapper = styled.div`
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
-
+    
     padding-right: 10vw;
     padding-left: 10vw;
     
@@ -56,15 +27,13 @@ const ContentWrapper = styled.div`
     }
 `;
 
+
 const PageWrapper = ({title, children}) => (
     <Fragment>
-        {/*<Wrapper>*/}
-
-            <ContentWrapper>
+        <ContentWrapper>
                 {children}
-            </ContentWrapper>
-        {/*</Wrapper>*/}
+        </ContentWrapper>
     </Fragment>
-)
+);
 
 export default PageWrapper

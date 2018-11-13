@@ -6,17 +6,22 @@ import info from './static/data/info.json'
 import PageContent from './components/pages/PageContent'
 import { color } from './components/theme/Colors'
 import ThemeHandler from "./components/theme/ThemeHandler";
+import './components/fonts.css'
 
 // Inject styles directly. Cannot apply styled component to body so inject directly
 injectGlobal`
     body {
-        height: 100%;
-        width: 100%;
+        // height: 100vh;
+        // width: 100vw;
         margin: 0;
         padding: 0;
         font-family: sans-serif;
         position: relative;
-        z-index: 0;
+        z-index: -1;
+        // overflow: hidden;
+        overflow-y: scroll;
+        
+        // background-color:  ${props => props.theme.primaryColor};
         /* Color most closely matches the color where the clipping on iOS occurs */
         // background: ${color.backgroundFallback}; /* Fallback for old browsers */
 
@@ -41,11 +46,17 @@ const ContentWrapper = styled.div`
     
     top: 0;
     z-index: 0;
-    overflow-x: hidden;
-    min-width: 100vw;
-    min-height: 100vh;
-    width:100vw;
-    height:100vh;
+    
+    // width:100%;
+    height:100%;
+    
+    // overflow-y: scroll;
+    // overflow-x: hidden;
+    // Caused scrolltop issues when set
+    // min-width: 100vw;
+    // min-height: 100vh;
+    // width:100vw;
+    // height:100vh;
     background-color: ${props => props.theme.primaryColor};
     display: block;
 `;
@@ -66,15 +77,15 @@ class App extends Component {
 // {this.state.data && <PageContent data={this.state.data} />}
   render() {
     return (
-        <HashRouter>
+        <BrowserRouter basename="/">
             <ScrollToTop>
                 <ThemeHandler>
-                    <ContentWrapper>
+                    {/*<ContentWrapper>*/}
                         {this.state.data && <PageContent data={this.state.data} />}
-                    </ContentWrapper>
+                    {/*</ContentWrapper>*/}
                 </ThemeHandler>
             </ScrollToTop>
-        </HashRouter>
+        </BrowserRouter>
     );
   }
 }
