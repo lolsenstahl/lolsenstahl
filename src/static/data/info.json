@@ -13,7 +13,6 @@
     {
       "title": "",
       "description": [
-        "Hey this is my profile/bio",
         "Hometown: Wellington, New Zealand",
         "Studied: Engineering at The University of Auckland, Auckland, New Zealand",
         "Languages: English (native), French (basic)"
@@ -279,7 +278,7 @@
       "subsections": [
         {"title": "FIFA // UEFA",
           "icon": "fff.jpg",
-          "text": ["Supporter fo the French national team in the World cup and Euros"]
+          "text": ["Supporter of the French national team in the World cup and Euros"]
         },
         {"title": "Premier // Champions League",
           "icon": "chleague.jpg",
